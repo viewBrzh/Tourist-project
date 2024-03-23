@@ -10,6 +10,6 @@ app.use((req, res, next) => {
     next();
 });
 
-app.listen(3306, () => {
-    console.log('Server is running on port 11230');
+app.listen(8080, () => {
+    console.log('Server is running on port 8080');
 });
