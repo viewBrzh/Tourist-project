@@ -11,9 +11,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "body": "^5.1.0",
+>>>>>>> 1eaad8088c9495477c3a7cfb534da0c191d28611
     "body-parser": "^1.20.2",
     "express": "^4.19.1",
     "mysql2": "^3.9.2",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "parser": "^0.1.4"
   }
 }
