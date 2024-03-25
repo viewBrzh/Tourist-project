@@ -3,7 +3,8 @@ const app = express();
 
 app.use(express.json());
 
-const touristRoutes = require("./routes/tourist");
+const placeRoutes = require('./routes/place');
+
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -14,6 +15,8 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/places', placeRoutes);
+
 app.listen(8080, () => {
-  console.log("Server is running on port 11230");
+  console.log("Server is running on port 8080");
 });

@@ -1,12 +1,15 @@
 import '../App.css';
 import Main from '../layouts/main';
 import React, { useState, useRef, useEffect } from "react";
+import ReactCardSlider from '../components/ReactCardSlider';
 
 function App() {
 
   const [isActive, setIsActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const searchWrapperRef = useRef(null);
+  const [places, setPlaces] = useState([]);
+
 
   const toggleSearch = () => {
     setIsActive((prevState) => !prevState);
@@ -30,6 +33,28 @@ function App() {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
+
+  useEffect(() => {
+    fetch("http://localhost:8080/places/get-all")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setPlaces(data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        // Handle error (e.g., show error message to user)
+      });
+  }, []);
+
+  const filteredPlaces = places.filter(place =>
+    place.Name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <Main>
@@ -72,180 +97,40 @@ function App() {
       </div> {/* end of basic-1 */}
       {/* end of intro */}
 
+      <h1 className='container' style={{ display: 'flex', justifyContent: 'center' }}>สถานที่ท่องเที่ยวยอดนิยม</h1>
 
-      {/* Description */}
-      <div className="cards-1">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-
-              {/* Card */}
-              <div className="card">
-                <span className="fa-stack">
-                  <span className="hexagon"></span>
-                  <i className="fas fa-binoculars fa-stack-1x"></i>
-                </span>
-                <div className="card-body">
-                  <h4 className="card-title">Environment Analysis</h4>
-                  <p>The starting point of any success story is knowing your current position in the business environment</p>
-                </div>
-              </div>
-              {/* end of card */}
-
-              {/* Card */}
-              <div className="card">
-                <span className="fa-stack">
-                  <span className="hexagon"></span>
-                  <i className="fas fa-list-alt fa-stack-1x"></i>
-                </span>
-                <div className="card-body">
-                  <h4 className="card-title">Development Planning</h4>
-                  <p>After completing the environmental analysis the next stage is to design and  plan your development strategy</p>
-                </div>
-              </div>
-              {/* end of card */}
-
-              {/* Card */}
-              <div className="card">
-                <span className="fa-stack">
-                  <span className="hexagon"></span>
-                  <i className="fas fa-chart-pie fa-stack-1x"></i>
-                </span>
-                <div className="card-body">
-                  <h4 className="card-title">Execution & Evaluation</h4>
-                  <p>In this phase you will focus on executing the actions plan and evaluating the results after each marketing campaign</p>
-                </div>
-              </div>
-              {/* end of card */}
-
-            </div> {/* end of col */}
-          </div> {/* end of row */}
-        </div> {/* end of container */}
-      </div> {/* end of cards-1 */}
-      {/* end of description */}
-
-      {/* Testimonials */}
-      <div className="slider">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <h2>Read Our Customer Testimonials</h2>
-              <p className="p-heading">Our clients are our partners and we can not imagine a better future for our company without helping them reach their objectives</p>
-            </div> {/* end of col */}
-          </div> {/* end of row */}
-          <div className="row">
-            <div className="col-lg-12">
-
-              {/* Card Slider */}
-              <div className="slider-container">
-                <div className="swiper-container card-slider">
-                  <div className="swiper-wrapper">
-
-                    {/* Slide */}
-                    <div className="swiper-slide">
-                      <div className="card">
-                        <img className="card-image" src="images/testimonial-1.jpg" alt="alternative" />
-                        <div className="card-body">
-                          <div className="testimonial-text">The guys from Aria helped with getting my business off the ground and turning into a profitable company.</div>
-                          <div className="testimonial-author">Jude Thorn - Founder</div>
-                        </div>
-                      </div>
-                    </div> {/* end of swiper-slide */}
-                    {/* end of slide */}
-
-                    {/* Slide */}
-                    <div className="swiper-slide">
-                      <div className="card">
-                        <img className="card-image" src="images/testimonial-2.jpg" alt="alternative" />
-                        <div className="card-body">
-                          <div className="testimonial-text">I purchased the Growth Accelerator service pack a few years ago and I renewed the contract each year. </div>
-                          <div className="testimonial-author">Marsha Singer - Marketer</div>
-                        </div>
-                      </div>
-                    </div> {/* end of swiper-slide */}
-                    {/* end of slide */}
-
-                    {/* Slide */}
-                    <div className="swiper-slide">
-                      <div className="card">
-                        <img className="card-image" src="images/testimonial-3.jpg" alt="alternative" />
-                        <div className="card-body">
-                          <div className="testimonial-text">Aria's CEO personally attends client meetings and gives his feedback on business growth strategies.</div>
-                          <div className="testimonial-author">Roy Smith - Developer</div>
-                        </div>
-                      </div>
-                    </div> {/* end of swiper-slide */}
-                    {/* end of slide */}
-
-                    {/* Slide */}
-                    <div className="swiper-slide">
-                      <div className="card">
-                        <img className="card-image" src="images/testimonial-4.jpg" alt="alternative" />
-                        <div className="card-body">
-                          <div className="testimonial-text">At the beginning I thought the prices are a little high for what they offer but they over deliver each and every time.</div>
-                          <div className="testimonial-author">Ronald Spice - Owner</div>
-                        </div>
-                      </div>
-                    </div> {/* end of swiper-slide */}
-                    {/* end of slide */}
-
-                    {/* Slide */}
-                    <div className="swiper-slide">
-                      <div className="card">
-                        <img className="card-image" src="images/testimonial-5.jpg" alt="alternative" />
-                        <div className="card-body">
-                          <div className="testimonial-text">I recommend Aria to every business owner or growth leader that wants to take his company to the next level.</div>
-                          <div className="testimonial-author">Lindsay Rune - Manager</div>
-                        </div>
-                      </div>
-                    </div> {/* end of swiper-slide */}
-                    {/* end of slide */}
-
-                    {/* Slide */}
-                    <div className="swiper-slide">
-                      <div className="card">
-                        <img className="card-image" src="images/testimonial-6.jpg" alt="alternative" />
-                        <div className="card-body">
-                          <div className="testimonial-text">My goals for using Aria's services seemed high when I first set them but they've met them with no problems.</div>
-                          <div className="testimonial-author">Ann Black - Consultant</div>
-                        </div>
-                      </div>
-                    </div> {/* end of swiper-slide */}
-                    {/* end of slide */}
-
-                  </div> {/* end of swiper-wrapper */}
-
-                  {/* Add Arrows */}
-                  <div className="swiper-button-next"></div>
-                  <div className="swiper-button-prev"></div>
-                  {/* end of add arrows */}
-
-                </div> {/* end of swiper-container */}
-              </div> {/* end of sliedr-container */}
-              {/* end of card slider */}
-
-            </div> {/* end of col */}
-          </div> {/* end of row */}
-        </div> {/* end of container */}
-      </div> {/* end of slider */}
-      {/* end of testimonials */}
-      <div ref={searchWrapperRef} className={`search-wrapper ${isActive ? "active" : ""}`}>
-        <div className="input-holder">
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Type to search"
-            value={searchQuery}
-            onChange={handleInputChange}
-            autoFocus={isActive}
-          />
-          <button className="search-icon" onClick={toggleSearch}>
-            <span></span>
-          </button>
-        </div>
-        <span className="close" onClick={toggleSearch}></span>
+      <div className='container' id='places' style={{ display: 'flex', justifyContent: 'center' }}>
+        <ReactCardSlider slides={filteredPlaces.map(place => ({
+          image: place.Image,
+          title: place.Name.length > 35 ? `${place.Name.slice(0, 35)}...` : place.Name,
+          description: place.Description.length > 50 ? `${place.Description.slice(0, 50)}...` : place.Description,
+          clickEvent: () => alert(`Clicked on ${place.Name}`)
+        }))} />
       </div>
-    </Main>
+
+      <br></br>
+
+      {/* end of testimonials */}
+      <a href='#places'>
+        <div ref={searchWrapperRef} className={`search-wrapper ${isActive ? "active" : ""}`}>
+          <div className="input-holder">
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Type to search"
+              value={searchQuery}
+              onChange={handleInputChange}
+              autoFocus={isActive}
+            />
+            <button className="search-icon" onClick={toggleSearch}>
+              <span></span>
+            </button>
+          </div>
+          <span className="close" onClick={toggleSearch}></span>
+        </div>
+      </a>
+
+    </Main >
   );
 }
 

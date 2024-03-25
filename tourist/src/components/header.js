@@ -62,25 +62,8 @@ function Header() {
               <a className="nav-link page-scroll" href="#intro">INTRO</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link page-scroll" href="#services">SERVICES</a>
+              <a className="nav-link page-scroll" href="#places">Find Places</a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link page-scroll" href="#callMe">CALL ME</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link page-scroll" href="#projects">PROJECTS</a>
-            </li>
-
-            {/* Dropdown Menu */}
-            <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle page-scroll" href="#about" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">ABOUT</a>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="terms-conditions.html"><span className="item-text">TERMS CONDITIONS</span></a>
-                <div className="dropdown-items-divide-hr"></div>
-                <a className="dropdown-item" href="privacy-policy.html"><span className="item-text">PRIVACY POLICY</span></a>
-              </div>
-            </li>
-            {/* end of dropdown menu */}
 
             <li className="nav-item">
               <a className="nav-link page-scroll" href="#contact">CONTACT</a>
