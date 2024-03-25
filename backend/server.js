@@ -3,6 +3,7 @@ const app = express();
 
 app.use(express.json());
 
+const touristRoutes = require("./routes/tourist");
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
