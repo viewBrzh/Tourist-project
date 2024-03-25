@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PlaceDetail from "./pages/placeDetail";
 import Contact from "./pages/contact";
+import Updatecontact from "./pages/Updatecontact";
 
 const router = createBrowserRouter([
   {
@@ -14,11 +15,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/detail/:id",
-    element: <PlaceDetail></PlaceDetail>
+    element: <PlaceDetail></PlaceDetail>,
   },
   {
     path: "/contact",
-    element: <Contact></Contact>
+    element: <Contact />,
+  },
+  {
+    path: "/updatecontact",
+    element: <Updatecontact />,
   },
 ]);
 
