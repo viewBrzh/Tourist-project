@@ -5,6 +5,7 @@ import App from "./pages/App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PlaceDetail from "./pages/placeDetail";
+import Contact from "./pages/contact";
 
 const router = createBrowserRouter([
   {
@@ -12,9 +13,13 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/detail",
+    path: "/detail/:id",
     element: <PlaceDetail></PlaceDetail>
-  }
+  },
+  {
+    path: "/contact",
+    element: <Contact></Contact>
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
