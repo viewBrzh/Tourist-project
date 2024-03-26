@@ -2,6 +2,7 @@ import '../App.css';
 import Main from '../layouts/main';
 import React, { useState, useRef, useEffect } from "react";
 import ReactCardSlider from '../components/ReactCardSlider';
+import { Link } from "react-router-dom";
 
 function App() {
 
@@ -100,18 +101,19 @@ function App() {
       <h1 className='container' style={{ display: 'flex', justifyContent: 'center' }}>สถานที่ท่องเที่ยวยอดนิยม</h1>
 
       <div className='container' id='places' style={{ display: 'flex', justifyContent: 'center' }}>
+        <Link to={''}></Link>
         <ReactCardSlider slides={filteredPlaces.map(place => ({
+          id: place.Id,
           image: place.Image,
           title: place.Name.length > 35 ? `${place.Name.slice(0, 35)}...` : place.Name,
-          description: place.Description.length > 50 ? `${place.Description.slice(0, 50)}...` : place.Description,
-          clickEvent: () => alert(`Clicked on ${place.Name}`)
+          description: place.Description.length > 50 ? `${place.Description.slice(0, 50)}...` : place.Description
         }))} />
       </div>
 
       <br></br>
 
       {/* end of testimonials */}
-      <a href='#places'>
+      <a >
         <div ref={searchWrapperRef} className={`search-wrapper ${isActive ? "active" : ""}`}>
           <div className="input-holder">
             <input

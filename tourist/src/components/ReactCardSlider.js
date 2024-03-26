@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const ReactCardSlider = (props) => {
   const sliderRef = useRef(null);
@@ -21,21 +22,19 @@ const ReactCardSlider = (props) => {
       />
       <div id="slider" ref={sliderRef}>
         {props.slides.map((slide, index) => (
-          <div
-            className="slider-card"
-            key={index}
-            onClick={() => slide.clickEvent()}
-          >
-            <div
-              className="slider-card-image"
-              style={{
-                backgroundImage: `url(${slide.image})`,
-                backgroundSize: "cover",
-              }}
-            ></div>
-            <p className="slider-card-title">{slide.title}</p>
-            <p className="slider-card-description">{slide.description}</p>
-          </div>
+          <Link to={`/updateplace/${slide.id}`} key={index}>
+            <div className="slider-card">
+              <div
+                className="slider-card-image"
+                style={{
+                  backgroundImage: `url(${slide.image})`,
+                  backgroundSize: "cover",
+                }}
+              ></div>
+              <p className="slider-card-title">{slide.title}</p>
+              <p className="slider-card-description">{slide.description}</p>
+            </div>
+          </Link>
         ))}
       </div>
       <MdChevronRight

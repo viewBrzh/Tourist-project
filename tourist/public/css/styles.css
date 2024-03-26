@@ -655,8 +655,8 @@ input[type='checkbox'] {
 }
 
 .navbar-custom .navbar-brand.logo-image img {
-    width: 7.0625rem;
-	height: 2rem;
+    width: 7rem;
+	height: 2.5rem;
 	-webkit-backface-visibility: hidden;
 }
 
@@ -799,6 +799,23 @@ input[type='checkbox'] {
 .header .btn-solid-lg {
 	margin-right: 0.5rem;
 	margin-bottom: 1.25rem;
+}
+
+.header-hero {
+	height: 300px;
+	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('https://www.dasta.or.th/uploads/article/202107/1625478727_cf212c18aa77cd3f655c.jpg') center center no-repeat;
+	background-size: cover;
+}
+
+.header-hero h1 {
+	margin-bottom: 0.5rem;
+	color: #fff;
+}
+
+.header-hero .header-hero-content {
+	padding-top: 8rem;
+	padding-bottom: 2.125rem;
+	text-align: center;
 }
 
 
@@ -2592,4 +2609,29 @@ a:hover.back-to-top {
     height: 5px;
     left: 0px;
     top: 10px;
+}
+
+
+#contacts {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between; /* Adjust as needed */
+  }
+
+/* contact */
+
+.contact .btn-square {
+    width: 100px;
+    height: 100px;
+    border: 20px solid var(--light);
+    background: rgb(20, 191, 152);
+    border-radius: 50px;
+}
+
+.btn-square, .btn-sm-square, .btn-lg-square {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
 }

@@ -45,8 +45,9 @@ function Header() {
         {/* <a className="navbar-brand logo-text page-scroll" href="index.html">Aria</a> */}
 
         {/* Image Logo */}
-        <a className="navbar-brand logo-image" href="index.html">
-          <img src="./images/logo.svg" alt="alternative" />
+        <a className="navbar-brand logo-image">
+          <Link to={'/#header'}> <img src="./images/logo.png" alt="alternative" /> </Link>
+
         </a>
 
         {/* Mobile Menu Toggle Button */}
@@ -67,41 +68,18 @@ function Header() {
         <div className="collapse navbar-collapse" id="navbarsExampleDefault">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <a className="nav-link page-scroll" href="#header">
+              <Link to={'/'} style={{ textDecoration: "none" }}><a className="nav-link page-scroll" href="#header">
                 HOME <span className="sr-only">(current)</span>
               </a>
+              </Link>
             </li>
-            <li className="nav-item">
-              <a className="nav-link page-scroll" href="#intro">
-                INTRO
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link page-scroll" href="#places">
-                Find Places
-              </a>
-            </li>
-
             <li className="nav-item">
               <Link to="/contact" className="nav-link page-scroll">
                 CONTACT
               </Link>
             </li>
           </ul>
-          <span className="nav-item social-icons">
-            <span className="fa-stack">
-              <a href="#your-link">
-                <span className="hexagon"></span>
-                <i className="fab fa-stack-1x">TH</i>
-              </a>
-            </span>
-            <span className="fa-stack">
-              <a href="#your-link">
-                <span className="hexagon"></span>
-                <i className="fab fa-stack-1x">EN</i>
-              </a>
-            </span>
-          </span>
+          
         </div>
       </nav>{" "}
       {/* end of navbar */}
