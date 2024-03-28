@@ -46,7 +46,7 @@ function Header() {
 
         {/* Image Logo */}
         <a className="navbar-brand logo-image">
-          <Link to={'/#header'}> <img src="./images/logo.png" alt="alternative" /> </Link>
+          <Link to={'/#header'}> <img src="../images/logo.png" alt="alternative" /> </Link>
 
         </a>
 

@@ -1,18 +1,20 @@
-#main-slider-container{
-    width: 90%;
+#main-slider-container {
+    width: 100%;
     height: 305px;
+    border-radius: 25px;
 }
 
-#slider{
+#slider {
     width: 100%;
     height: 100%;
     white-space: nowrap;
     overflow-x: scroll;
     scrollbar-width: none;
     scroll-behavior: smooth;
+    border-radius: 25px;
 }
 
-#slider::-webkit-scrollbar{
+#slider::-webkit-scrollbar {
     display: none;
 }
 
@@ -20,53 +22,66 @@
     position: relative;
     display: flex;
     align-items: center;
+    border-radius: 25px;
 }
 
 
-.slider-card-title, .slider-card-description{
+.slider-card-title,
+.slider-card-description {
     margin: 5px 0px 5px 10px;
 }
 
-.slider-card-title{
+.slider-card-title {
     font-weight: 500;
     margin-top: 10px;
 }
 
-.slider-card-description{
+.slider-card-description {
     opacity: 0.5;
-    font-size: 13px;  
+    font-size: 13px;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
-.slider-card-image{
+.slider-card-image {
     width: 100%;
-    height: 220px;
-    background-color: rgb(240 240 240 / 80%);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    height: 64%;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    background-color: rgb(165, 165, 165);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
 }
 
-.slider-icon.left, .slider-icon.right {
+
+.slider-icon.left,
+.slider-icon.right {
     background: white;
     border-radius: 100%;
     position: absolute;
     opacity: 0.5;
     box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 12%);
     cursor: pointer;
+    color: #14bf98;
 }
 
-.slider-icon.left{
+.slider-icon.left {
     left: 0;
 }
 
-.slider-icon.right{
+.slider-icon.right {
     right: 0;
 }
 
-.slider-icon.left:hover, .slider-icon.right:hover{
+.slider-icon.left:hover,
+.slider-icon.right:hover {
     opacity: 1;
 }
 
-.slider-card{
+.slider-card {
     width: 320px;
     height: 300px;
     background: white;
@@ -77,3 +92,26 @@
     box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 12%);
     cursor: pointer;
 }
+
+/* CSS for the expanded image overlay */
+.expanded-image-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow-y: auto; /* Enable scrolling if image is too large */
+  }
+  
+  /* CSS for the expanded image */
+  .expanded-image {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }

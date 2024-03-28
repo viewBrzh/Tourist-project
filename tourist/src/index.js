@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PlaceDetail from "./pages/placeDetail";
 import Contact from "./pages/contact";
 import Updatecontact from "./pages/Updatecontact";
+import UpdatePlace from "./pages/updatePlaces";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/updatecontact/:id",
     element: <Updatecontact />,
+  },
+  {
+    path: "/updateplace/:id",
+    element: <UpdatePlace />,
   },
 ]);
 

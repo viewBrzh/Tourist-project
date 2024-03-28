@@ -22,7 +22,7 @@ const ReactCardSlider = (props) => {
       />
       <div id="slider" ref={sliderRef}>
         {props.slides.map((slide, index) => (
-          <Link to={`/updateplace/${slide.id}`} key={index}>
+          <Link to={`/detail/${slide.id}`} key={index} style={{ textDecoration: "none" }}>
             <div className="slider-card">
               <div
                 className="slider-card-image"
@@ -32,7 +32,7 @@ const ReactCardSlider = (props) => {
                 }}
               ></div>
               <p className="slider-card-title">{slide.title}</p>
-              <p className="slider-card-description">{slide.description}</p>
+              <p className="slider-card-description" style={{ whiteSpace: "pre-line" }}>{slide.description}</p>
             </div>
           </Link>
         ))}

@@ -7,9 +7,9 @@ router.get("/get-all", placeController.getAllLocations);
 
 router.post("/add-place", placeController.createLocation);
 
-router.get("/edit-place/:id", placeController.updateLocation);
+router.get("/get-place/:id", placeController.getOneLocation);
 
-router.post("/edit-place", placeController.getOneLocation);
+router.post("/edit-place/:id", placeController.updateLocation);
 
 router.get("/delete-place/:id", placeController.deleteLocation);
 

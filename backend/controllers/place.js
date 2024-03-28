@@ -25,22 +25,21 @@ const getOneLocation = async (req, res) => {
 
 // Create a new location
 const createLocation = async (req, res) => {
-    const location = new Location({
-        Id: req.body.Id,
-        Name: req.body.Name,
-        Image: req.body.Image,
-        Description: req.body.Description,
-        Latitude: req.body.Latitude,
-        Longitude: req.body.Longitude,
-        Closetime: req.body.Closetime,
-        Opentime: req.body.Opentime,
-        Slideimg: req.body.Slideimg,
-        Day: req.body.Day
-    });
+  
+        let Name = req.body.Name;
+        let Image = req.body.Image;
+        let Description = req.body.Description;
+        let Latitude = req.body.Latitude;
+        let Longitude = req.body.Longitude;
+        let Closetime = req.body.Closetime;
+        let Opentime = req.body.Opentime;
+        let Slideimg = req.body.Slideimg;
+        let Day = req.body.Day;
+
 
     try {
-        const newLocation = await location.save();
-        res.status(201).json(newLocation);
+        const newLocation = await Location.create(Name, Image, Description, Latitude, Longitude, Closetime, Opentime, Slideimg, Day);
+        res.json(newLocation);
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
