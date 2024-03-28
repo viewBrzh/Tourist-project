@@ -1,74 +1,84 @@
-const Location = require('../models/place');
+const Place = require('../models/place');
 
-// Get all locations
-const getAllLocations = async (req, res) => {
-    try {
-        const locations = await Location.findAll();
-        res.json(locations);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-};
+exports.getAllPlaces = (req, res, next) => {
+    Place.findAll()
+        .then(places => {
+            res.json(places[0]);
+        })
+        .catch(error => {
+            res.status(500).json({
+                "message": error.message || "Some error occurred while retrieving places.",
+                "result": false
+            });
+        });
+}
 
-// Get one location by ID
-const getOneLocation = async (req, res) => {
-    try {
-        const location = await Location.findById(req.params.id);
-        if (!location) {
-            return res.status(404).json({ message: 'Location not found' });
-        }
-        res.json(location);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-};
+exports.addPlace = (req, res, next) => {
+    const { Name, Image, Description, Latitude, Longitude, Closetime, Opentime, Slideimg, Day } = req.body;
 
-// Create a new location
-const createLocation = async (req, res) => {
-  
-        let Name = req.body.Name;
-        let Image = req.body.Image;
-        let Description = req.body.Description;
-        let Latitude = req.body.Latitude;
-        let Longitude = req.body.Longitude;
-        let Closetime = req.body.Closetime;
-        let Opentime = req.body.Opentime;
-        let Slideimg = req.body.Slideimg;
-        let Day = req.body.Day;
+    Place.create(Name, Image, Description, Latitude, Longitude, Closetime, Opentime, Slideimg, Day)
+        .then(() => {
+            res.status(200).json({
+                "message": "success",
+                "result": true
+            });
+        })
+        .catch((error) => {
+            res.status(200).json({
+                "message": error.message,
+                "result": false
+            });
+        });
+}
 
+exports.getEditPlace = (req, res, next) => {
+    const Id = req.params.Id;
+    Place.findById(Id)
+        .then(place => {
+            res.status(200).json({
+                "message": "success",
+                "data": place[0]
+            });
+        })
+        .catch((error) => {
+            res.status(500).json({
+                "message": error.message || "Some error occurred while retrieving place.",
+                "result": false
+            });
+        });
+}
 
-    try {
-        const newLocation = await Location.create(Name, Image, Description, Latitude, Longitude, Closetime, Opentime, Slideimg, Day);
-        res.json(newLocation);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
-};
+exports.editPlace = (req, res, next) => {
+    const { Id, Name, Image, Description, Latitude, Longitude, Closetime, Opentime, Slideimg, Day } = req.body;
 
-// Update a location
-const updateLocation = async (req, res) => {
-    try {
-        await Location.findByIdAndUpdate(req.params.id, req.body);
-        res.json({ message: 'Location updated' });
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
-};
+    Place.findByIdAndUpdate(Id, { Name, Image, Description, Latitude, Longitude, Closetime, Opentime, Slideimg, Day })
+        .then(() => {
+            res.status(200).json({
+                "message": "success",
+                "result": true
+            });
+        })
+        .catch((error) => {
+            res.status(200).json({
+                "message": error.message,
+                "result": false
+            });
+        });
+}
 
-// Delete a location
-const deleteLocation = async (req, res) => {
-    try {
-        await Location.findByIdAndDelete(req.params.id);
-        res.json({ message: 'Location deleted' });
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-};
-
-module.exports = {
-    getAllLocations,
-    createLocation,
-    updateLocation,
-    deleteLocation,
-    getOneLocation
-};
+exports.deletePlace = (req, res, next) => {
+    const Id = req.params.Id;
+    Place.findByIdAndDelete(Id)
+        .then(() => {
+            res.status(200).json({
+                "message": "success",
+                "result": true
+            });
+        })
+        .catch((error) => {
+            res.status(500).json({
+                "message": error.message || "Some error occurred while deleting place.",
+                "result": false
+            });
+        });
+}

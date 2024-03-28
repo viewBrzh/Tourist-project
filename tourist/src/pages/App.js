@@ -52,10 +52,11 @@ function App() {
         // Handle error (e.g., show error message to user)
       });
   }, []);
-
-  const filteredPlaces = places.filter(place =>
+  
+  // Inside the component
+  const filteredPlaces = Array.isArray(places) ? places.filter(place =>
     place.Name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  ) : [];
 
   return (
     <Main>

@@ -78,12 +78,15 @@ function Header() {
                 CONTACT
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/manage" className="nav-link page-scroll">
+                MANAGE
+              </Link>
+            </li>
           </ul>
           
         </div>
       </nav>{" "}
-      {/* end of navbar */}
-      {/* end of navbar */}
     </header>
   );
 }

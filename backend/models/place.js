@@ -1,95 +1,49 @@
 const db = require('../util/database');
 
 module.exports = class Place {
-  constructor(name, image, description, latitude, longitude, closetime, opentime, slideimg, day) {
-    this.name = name;
-    this.image = image;
-    this.description = description;
-    this.latitude = latitude;
-    this.longitude = longitude;
-    this.closetime = closetime;
-    this.opentime = opentime;
-    this.slideimg = slideimg;
-    this.day = day;
-  }
 
-  static async findAll() {
-    try {
-      const [results, fields] = await db.execute('SELECT * FROM place');
-      return results;
-    } catch (error) {
-      throw error;
+    constructor(Id, Name, Image, Description, Latitude, Longitude, Closetime, Opentime, Slideimg, Day) {
+        this.Id = Id;
+        this.Name = Name;
+        this.Image = Image;
+        this.Description = Description;
+        this.Latitude = Latitude;
+        this.Longitude = Longitude;
+        this.Closetime = Closetime;
+        this.Opentime = Opentime;
+        this.Slideimg = Slideimg;
+        this.Day = Day;
     }
-  }
 
-  static findById(placeId) {
-    return new Promise((resolve, reject) => {
-      db.query('SELECT * FROM place WHERE Id = ?', [placeId], (error, results) => {
-        if (error) {
-          reject(error);
-          return;
-        }
-        if (results.length === 0) {
-          reject('Place not found');
-          return;
-        }
-        resolve(results[0]);
-      });
-    });
-}
+    static findAll() {
+        return db.execute("SELECT Id, Name, Image, Description, Latitude, Longtitude, Closetime, Opentime, Slideimg, Day FROM place");
+    }
 
-  
+    static findById(Id) {
+        return db.execute(
+            'SELECT * FROM place WHERE Id = ?',
+            [Id]
+        );
+    }
 
-  static create(name, image, description, latitude, longitude, closetime, opentime, slideimg, day) {
-  return new Promise((resolve, reject) => {
-    db.query(
-      'INSERT INTO place (Name, Image, Description, Latitude, Longtitude, Closetime, Opentime, Slideimg, Day) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-      [name, image, description, latitude, longitude, closetime, opentime, slideimg, day],
-      (error, results) => {
-        if (error) {
-          reject(error);
-          return;
-        }
-        if (results.affectedRows === 0) {
-          reject(new Error('Failed to insert data'));
-          return;
-        }
-        resolve(results);
-      }
-    );
-  });
-}
+    static deleteById(Id) {
+        return db.execute(
+            'DELETE FROM place WHERE Id = ?',
+            [Id]
+        );
+    }
 
+    static create(Name, Image, Description, Latitude, Longitude, Closetime, Opentime, Slideimg, Day) {
+        return db.execute(
+            'INSERT INTO place (Name, Image, Description, Latitude, Longtitude, Closetime, Opentime, Slideimg, Day) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [Name, Image, Description, Latitude, Longitude, Closetime, Opentime, Slideimg, Day]
+        );
+    }
 
-  static update(placeId, name, image, description, latitude, longitude, closetime, opentime, slideimg, day) {
-    return new Promise((resolve, reject) => {
-      db.query(
-        'UPDATE place SET Name = ?, Image = ?, Description = ?, Latitude = ?, Longitude = ?, Closetime = ?, Opentime = ?, Slideimg = ?, Day = ? WHERE Id = ?',
-        [name, image, description, latitude, longitude, closetime, opentime, slideimg, day, placeId],
-        (error, results) => {
-          if (error) {
-            reject(error);
-            return;
-          }
-          if (results.affectedRows === 0) {
-            reject('Place not found');
-            return;
-          }
-          resolve(results);
-        }
-      );
-    });
-  }
-
-  static delete(placeId) {
-    return new Promise((resolve, reject) => {
-      db.query('DELETE FROM place WHERE Id = ?', [placeId], (error, results) => {
-        if (error) {
-          reject(error);
-          return;
-        }
-        resolve(results);
-      });
-    });
-  }
+    static updatePlace(Id, Name, Image, Description, Latitude, Longitude, Closetime, Opentime, Slideimg, Day) {
+        return db.execute(
+            'UPDATE place SET Name=?, Image=?, Description=?, Latitude=?, Longtitude=?, Closetime=?, Opentime=?, Slideimg=?, Day=? WHERE Id=?',
+            [Name, Image, Description, Latitude, Longitude, Closetime, Opentime, Slideimg, Day, Id]
+        );
+    }
 };

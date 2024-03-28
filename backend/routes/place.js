@@ -3,14 +3,14 @@ const router = express.Router();
 const placeController = require("../controllers/place");
 
 // path
-router.get("/get-all", placeController.getAllLocations);
+router.get("/get-all", placeController.getAllPlaces);
 
-router.post("/add-place", placeController.createLocation);
+router.post("/add-place", placeController.addPlace);
 
-router.get("/get-place/:id", placeController.getOneLocation);
+router.get("/get-place/:id", placeController.getEditPlace);
 
-router.post("/edit-place/:id", placeController.updateLocation);
+router.post("/edit-place/:id", placeController.editPlace);
 
-router.get("/delete-place/:id", placeController.deleteLocation);
+router.get("/delete-place/:id", placeController.deletePlace);
 
 module.exports = router;

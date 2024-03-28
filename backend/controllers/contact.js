@@ -41,12 +41,23 @@ const createContact = async (req, res) => {
 // Update a Contact
 const updateContact = async (req, res) => {
   try {
-    await Contact.findByIdAndUpdate(req.params.id, req.body);
-    res.json({ message: "Contact updated" });
-  } catch (err) {
-    res.status(400).json({ message: err.message });
+    const updatedContact = await Contact.update(
+      req.params.id, 
+      req.body.name,
+      req.body.newId
+    );
+    res.status(200).json({
+      "message": "success",
+      "result": updatedContact
+    });
+  } catch (error) {
+    res.status(500).json({
+      "message": error.message,
+      "result": false
+    });
   }
 };
+
 
 // Delete a Contact
 const deleteContact = async (req, res) => {

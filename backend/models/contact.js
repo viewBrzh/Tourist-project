@@ -48,23 +48,10 @@ module.exports = class Co {
   }
 
   static update(id, name) {
-    return new Promise((resolve, reject) => {
-      db.query(
-        "UPDATE contact SET name = ? WHERE id = ?",
-        [name, id],
-        (error, results) => {
-          if (error) {
-            reject(error);
-            return;
-          }
-          if (results.affectedRows === 0) {
-            reject("contact not found");
-            return;
-          }
-          resolve(results);
-        }
+    return db.execute(
+        "UPDATE contact SET name = ?, id = ? WHERE id = ?",
+        [name, id, id]
       );
-    });
   }
 
   static delete(id) {

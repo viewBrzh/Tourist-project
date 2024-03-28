@@ -2635,3 +2635,10 @@ a:hover.back-to-top {
     justify-content: center;
     font-weight: normal;
 }
+
+.card-title {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+  }
+  

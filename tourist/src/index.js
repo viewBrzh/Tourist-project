@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PlaceDetail from "./pages/placeDetail";
 import Contact from "./pages/contact";
 import Updatecontact from "./pages/Updatecontact";
+import Manage from "./pages/manage";
 import UpdatePlace from "./pages/updatePlaces";
 
 const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
     path: "/updateplace/:id",
     element: <UpdatePlace />,
   },
+  {
+    path: "/manage",
+    element: <Manage></Manage>
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
