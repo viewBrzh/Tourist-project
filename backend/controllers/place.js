@@ -32,26 +32,25 @@ exports.addPlace = (req, res, next) => {
 }
 
 exports.getEditPlace = (req, res, next) => {
-    const Id = req.params.Id;
+    const Id = req.params.id;
     Place.findById(Id)
         .then(place => {
-            res.status(200).json({
-                "message": "success",
-                "data": place[0]
-            });
+            res.status(200).json(place[0]);
         })
         .catch((error) => {
             res.status(500).json({
                 "message": error.message || "Some error occurred while retrieving place.",
-                "result": false
+                "result": false,
+                "id": Id
             });
         });
 }
 
 exports.editPlace = (req, res, next) => {
-    const { Id, Name, Image, Description, Latitude, Longitude, Closetime, Opentime, Slideimg, Day } = req.body;
+    const { Id, Name, Image, Description, Latitude, Longtitude, Closetime, Opentime, Slideimg, Day } = req.body;
+    console.log(req.body)
 
-    Place.findByIdAndUpdate(Id, { Name, Image, Description, Latitude, Longitude, Closetime, Opentime, Slideimg, Day })
+    Place.updatePlace(Id, Name, Image, Description, Latitude, Longtitude, Closetime, Opentime, Slideimg, Day )
         .then(() => {
             res.status(200).json({
                 "message": "success",
@@ -67,8 +66,8 @@ exports.editPlace = (req, res, next) => {
 }
 
 exports.deletePlace = (req, res, next) => {
-    const Id = req.params.Id;
-    Place.findByIdAndDelete(Id)
+    const Id = req.params.id;
+    Place.deleteById(Id)
         .then(() => {
             res.status(200).json({
                 "message": "success",

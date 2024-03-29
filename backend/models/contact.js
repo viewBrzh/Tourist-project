@@ -1,68 +1,29 @@
-const db = require("../util/database");
+const db = require('../util/database');
 
-module.exports = class Co {
-  constructor(id, name) {
-    this.id = id;
-    this.name = name;
-  }
+module.exports = class Contact {
 
-  static async findAll() {
-    try {
-      const [results, fields] = await db.execute("SELECT * FROM contact");
-      return results;
-    } catch (error) {
-      throw error;
+    constructor(id, name) {
+        this.id = id;
+        this.name = name;
     }
-  }
 
-  static findById(id) {
-    return new Promise((resolve, reject) => {
-      db.query("SELECT * FROM contact WHERE id = ?", [id], (error, results) => {
-        if (error) {
-          reject(error);
-          return;
-        }
-        if (results.length === 0) {
-          reject("contact not found");
-          return;
-        }
-        resolve(results[0]);
-      });
-    });
-  }
+    static findAll() {
+        return db.execute('SELECT id, name FROM contact');
+    }
 
-  static create(id, name) {
-    return new Promise((resolve, reject) => {
-      db.query(
-        "INSERT INTO place (id, name) VALUES (?, ?)",
-        [id, name],
-        (error, results) => {
-          if (error) {
-            reject(error);
-            return;
-          }
-          resolve(results);
-        }
-      );
-    });
-  }
+    static findById(id) {
+        return db.execute('SELECT * FROM contact WHERE id = ?', [id]);
+    }
 
-  static update(id, name) {
-    return db.execute(
-        "UPDATE contact SET name = ?, id = ? WHERE id = ?",
-        [name, id, id]
-      );
-  }
+    static deleteById(id) {
+        return db.execute('DELETE FROM contact WHERE id = ?', [id]);
+    }
 
-  static delete(id) {
-    return new Promise((resolve, reject) => {
-      db.query("DELETE FROM contact WHERE id = ?", [id], (error, results) => {
-        if (error) {
-          reject(error);
-          return;
-        }
-        resolve(results);
-      });
-    });
-  }
+    static create(name) {
+        return db.execute('INSERT INTO contact (name) VALUES (?)', [name]);
+    }
+
+    static updateById(id, name) {
+        return db.execute('UPDATE contact SET name = ? WHERE id = ?', [name, id]);
+    }
 };

@@ -9,6 +9,7 @@ import Contact from "./pages/contact";
 import Updatecontact from "./pages/Updatecontact";
 import Manage from "./pages/manage";
 import UpdatePlace from "./pages/updatePlaces";
+import InsertPlace from "./pages/insertPlace";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "/manage",
     element: <Manage></Manage>
+  },
+  {
+    path: '/insert',
+    element: <InsertPlace></InsertPlace>
   }
 ]);
 

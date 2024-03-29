@@ -1,78 +1,81 @@
-const Contact = require("../models/contact");
+const Contact = require('../models/contact');
 
-// Get all Contact
-const getAllContact = async (req, res) => {
-  try {
-    const contact = await Contact.findAll();
-    res.json(contact);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
+exports.getAllContacts = (req, res, next) => {
+    Contact.findAll()
+        .then(contacts => {
+            res.json(contacts[0]);
+        })
+        .catch(error => {
+            res.status(500).json({
+                "message": error.message || "Some error occurred while retrieving contacts.",
+                "result": false
+            });
+        });
+}
 
-// Get one Contact by ID
-const getOneContact = async (req, res) => {
-  try {
-    const Contact = await Contact.findById(req.params.id);
-    if (!Contact) {
-      return res.status(404).json({ message: "Contact not found" });
-    }
-    res.json(Contact);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
+exports.addContact = (req, res, next) => {
+    const { name } = req.body;
 
-// Create a new contact
-const createContact = async (req, res) => {
-  const contact = new Contact({
-    id: req.body.id,
-    name: req.body.name,
-  });
+    Contact.create(name)
+        .then(() => {
+            res.status(200).json({
+                "message": "success",
+                "result": true
+            });
+        })
+        .catch((error) => {
+            res.status(200).json({
+                "message": error.message,
+                "result": false
+            });
+        });
+}
 
-  try {
-    const newContact = await contact.save();
-    res.status(201).json(newContact);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-};
+exports.getEditContact = (req, res, next) => {
+    const id = req.params.id;
+    Contact.findById(id)
+        .then(contact => {
+            res.json(contact[0]);
+        })
+        .catch(error => {
+            res.status(500).json({
+                "message": error.message || "Some error occurred while retrieving contact.",
+                "result": false
+            });
+        });
+}
 
-// Update a Contact
-const updateContact = async (req, res) => {
-  try {
-    const updatedContact = await Contact.update(
-      req.params.id, 
-      req.body.name,
-      req.body.newId
-    );
-    res.status(200).json({
-      "message": "success",
-      "result": updatedContact
-    });
-  } catch (error) {
-    res.status(500).json({
-      "message": error.message,
-      "result": false
-    });
-  }
-};
+exports.editContact = (req, res, next) => {
+    const { id, name } = req.body;
 
+    Contact.updateById(id, name)
+        .then(() => {
+            res.status(200).json({
+                "message": "success",
+                "result": true
+            });
+        })
+        .catch((error) => {
+            res.status(200).json({
+                "message": error.message,
+                "result": false
+            });
+        });
+}
 
-// Delete a Contact
-const deleteContact = async (req, res) => {
-  try {
-    await Contact.findByIdAndDelete(req.params.id);
-    res.json({ message: "Contact deleted" });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
-
-module.exports = {
-  getAllContact,
-  createContact,
-  updateContact,
-  deleteContact,
-  getOneContact,
-};
+exports.deleteContact = (req, res, next) => {
+    const id = req.params.id;
+    Contact.deleteById(id)
+        .then(() => {
+            res.status(200).json({
+                "message": "success",
+                "result": true
+            });
+        })
+        .catch((error) => {
+            res.status(500).json({
+                "message": error.message || "Some error occurred while deleting contact.",
+                "result": false
+            });
+        });
+}

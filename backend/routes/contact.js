@@ -3,13 +3,13 @@ const router = express.Router();
 const contactController = require("../controllers/contact");
 
 // path
-router.get("/get-all-contact", contactController.getAllContact);
+router.get("/get-all-contact", contactController.getAllContacts);
 
-router.post("/add-contact", contactController.createContact);
+router.post("/add-contact", contactController.addContact);
 
-router.post("/edit-contact/:id", contactController.updateContact);
+router.put("/update-contact/:id", contactController.editContact);
 
-router.get("/get-one/:id", contactController.getOneContact);
+router.get("/get-contact/:id", contactController.getEditContact);
 
 router.get("/delete-contact/:id", contactController.deleteContact);
 

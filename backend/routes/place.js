@@ -11,6 +11,6 @@ router.get("/get-place/:id", placeController.getEditPlace);
 
 router.post("/edit-place/:id", placeController.editPlace);
 
-router.get("/delete-place/:id", placeController.deletePlace);
+router.delete("/delete-place/:id", placeController.deletePlace);
 
 module.exports = router;

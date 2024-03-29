@@ -40,10 +40,10 @@ module.exports = class Place {
         );
     }
 
-    static updatePlace(Id, Name, Image, Description, Latitude, Longitude, Closetime, Opentime, Slideimg, Day) {
+    static updatePlace(Id, Name, Image, Description, Latitude, Longtitude, Closetime, Opentime, Slideimg, Day) {
         return db.execute(
             'UPDATE place SET Name=?, Image=?, Description=?, Latitude=?, Longtitude=?, Closetime=?, Opentime=?, Slideimg=?, Day=? WHERE Id=?',
-            [Name, Image, Description, Latitude, Longitude, Closetime, Opentime, Slideimg, Day, Id]
+            [Name, Image, Description, Latitude, Longtitude, Closetime, Opentime, Slideimg, Day, Id]
         );
     }
 };
