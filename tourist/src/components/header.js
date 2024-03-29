@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -26,67 +27,44 @@ function Header() {
 
   return (
     <header>
-      {/* Preloader */}
-      {/* <div className="spinner-wrapper">
-        <div className="spinner">
-            <div className="bounce1"></div>
-            <div className="bounce2"></div>
-            <div className="bounce3"></div>
-        </div>
-    </div> */}
-      {/* end of preloader */}
-      {/* Navbar */}
       <nav
         className={`navbar navbar-expand-md navbar-dark navbar-custom fixed-top ${navbarClasses.join(
           " "
         )}`}
       >
-        {/* Text Logo - Use this if you don't have a graphic logo */}
-        {/* <a className="navbar-brand logo-text page-scroll" href="index.html">Aria</a> */}
+        <Link className="navbar-brand logo-image" to="/">
+          <img src="../images/logo.png" alt="alternative" />
+        </Link>
 
-        {/* Image Logo */}
-        <a className="navbar-brand logo-image">
-          <Link to={'/#header'}> <img src="../images/logo.png" alt="alternative" /> </Link>
-
-        </a>
-
-        {/* Mobile Menu Toggle Button */}
         <button
-          className="navbar-toggler"
           type="button"
-          data-toggle="collapse"
-          data-target="#navbarsExampleDefault"
-          aria-controls="navbarsExampleDefault"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+          className="navbar-toggler ms-auto me-0"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse"
         >
-          <span className="navbar-toggler-awesome fas fa-bars"></span>
-          <span className="navbar-toggler-awesome fas fa-times"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        {/* end of mobile menu toggle button */}
 
-        <div className="collapse navbar-collapse" id="navbarsExampleDefault">
+        <div className="collapse navbar-collapse" id="navbarCollapse">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <Link to={'/'} style={{ textDecoration: "none" }}><a className="nav-link page-scroll" href="#header">
+              <Link to={'/'} className="nav-link" style={{ textDecoration: "none" }}>
                 HOME <span className="sr-only">(current)</span>
-              </a>
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/contact" className="nav-link page-scroll">
+              <Link to="/contact" className="nav-link">
                 CONTACT
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/manage" className="nav-link page-scroll">
+              <Link to="/manage" className="nav-link">
                 MANAGE
               </Link>
             </li>
           </ul>
-          
         </div>
-      </nav>{" "}
+      </nav>
     </header>
   );
 }

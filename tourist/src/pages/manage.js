@@ -114,7 +114,9 @@ function Manage() {
             <div className="container">
                 <div className="row" style={{ padding: "25px" }}>
                     {filteredPlaces.map((place) => (
+                        
                         <div className="col-lg-4" key={place.Id}>
+                            <Link to={`/detail/${place.Id}`} style={{ textDecoration: "none" }}>
                             <div className="card" style={{ padding: "10px" }}>
                                 <img src={place.Image} className="card-img-top" alt="place" style={{ height: "200px" }} />
                                 <div className="card-body">
@@ -125,7 +127,9 @@ function Manage() {
                                         <Link><a className="btn" style={{ color: 'red' }} onClick={handleDelete(place.Id, place.Name)}>delete</a></Link>                                    </div>
                                 </div>
                             </div>
+                            </Link>
                         </div>
+                        
                     ))}
                 </div>
             </div>
