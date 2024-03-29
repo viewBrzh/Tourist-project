@@ -2787,6 +2787,7 @@ a:hover.back-to-top {
 	z-index: 1000;
 	/* Ensure the button is above other elements */
 }
+
 @media (max-width: 768px) {
 	.circle-button {
 		bottom: 90px;
@@ -2797,4 +2798,34 @@ a:hover.back-to-top {
 
 .circle-button:hover {
 	background-color: rgb(18, 140, 111);
+}
+
+.place-details img {
+	max-width: 100%;
+	height: auto;
+	margin-bottom: 20px;
+}
+
+.place-details h2 {
+	margin-top: 0;
+	font-size: 1.5em;
+}
+
+.place-details p {
+	margin-bottom: 10px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+	.header-hero-content {
+		height: 150px;
+	}
+
+	.text-container h1 {
+		font-size: 1.5em;
+	}
+
+	.text-container p {
+		font-size: 1em;
+	}
 }

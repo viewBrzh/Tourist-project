@@ -104,7 +104,7 @@ function App() {
       <div className='container' id='places' style={{ display: 'flex', justifyContent: 'center' }}>
         <ReactCardSlider slides={filteredPlaces.map(place => ({
           id: place.Id,
-          image: place.Image,
+          image: place.Slideimg,
           title: place.Name.length > 25 ? `${place.Name.slice(0, 25)}...` : place.Name,
           description: place.Description.length > 90 ? `${place.Description.slice(0, 90)}...` : place.Description
         }))} />
