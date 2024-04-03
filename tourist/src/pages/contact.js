@@ -58,7 +58,6 @@ function Contact() {
         {/* end of header-content */}
       </header>{" "}
       {/* end of header */}
-      {/* end of header */}
       <div className="container-xxl contact py-5">
         <div className="container">
           <div

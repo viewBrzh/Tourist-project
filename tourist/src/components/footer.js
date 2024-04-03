@@ -7,11 +7,15 @@ function Footer() {
             <div className="footer">
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-6">
-                            <div className="text-container about">
-                                <Link to={'/#footer'} style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', marginBottom: '20px' }}>
+                        <div className="col-md-2">
+                        <Link to={'/#footer'} style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', marginBottom: '20px' }}>
                                     <img src="../images/logo.png" alt="alternative" style={{ width: '150px', height: 'auto' }} />
                                 </Link>
+
+                        </div>
+                        <div className="col-md-4">
+                            <div className="text-container about">
+                                
                                 <h4>Follow us</h4>
                                 <ul className="list-unstyled white">
                                     <li>
