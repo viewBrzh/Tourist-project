@@ -14,9 +14,9 @@ exports.getAllPlaces = (req, res, next) => {
 }
 
 exports.addPlace = (req, res, next) => {
-    const { Name, Image, Description, Latitude, Longitude, Closetime, Opentime, Slideimg, Day } = req.body;
+    const { Name, Image, Description, Latitude, Longtitude, Closetime, Opentime, Slideimg, Day } = req.body;
 
-    Place.create(Name, Image, Description, Latitude, Longitude, Closetime, Opentime, Slideimg, Day)
+    Place.create(Name, Image, Description, Latitude, Longtitude, Closetime, Opentime, Slideimg, Day)
         .then(() => {
             res.status(200).json({
                 "message": "success",

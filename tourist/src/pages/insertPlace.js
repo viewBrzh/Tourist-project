@@ -9,7 +9,7 @@ function InsertPlace() {
     Image: "",
     Description: "",
     Latitude: "",
-    Longitude: "",
+    Longtitude: "",
     Closetime: "",
     Opentime: "",
     Slideimg: "",
@@ -187,7 +187,7 @@ function InsertPlace() {
               placeholder=""
               type="text"
               className="input"
-              name="Slideimg"
+              name="Day"
               onChange={handleChange}
             />
             <span>Day Open</span>

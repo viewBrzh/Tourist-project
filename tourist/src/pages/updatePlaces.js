@@ -219,7 +219,7 @@ function UpdatePlace() {
               placeholder=""
               type="text"
               className="input"
-              name="Slideimg"
+              name="Day"
               value={place.Day}
               onChange={handleChange}
             />
